@@ -2,7 +2,6 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import { theme } from "./theme";
 import ShoppingListItem from "./components/ShoppingListItem";
 
 export default function App() {
@@ -10,8 +9,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <ShoppingListItem name="Coffee"/>
-      <ShoppingListItem name="Tea"/>
-      <ShoppingListItem name="Orange juice" />
+      <ShoppingListItem name="Tea" isCompleted/>
+      <ShoppingListItem name="Orange juice"  />
     </View>
   );
 }
