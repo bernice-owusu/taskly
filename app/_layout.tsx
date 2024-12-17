@@ -1,10 +1,12 @@
-import { Stack } from "expo-router";
+import { Tabs } from "expo-router";
 
 
 export default function Layout() {
   return (
-    <Stack>
-        <Stack.Screen name="index" options={{title: "Shoppinglist"}}/>
-    </Stack>
+    <Tabs>
+        <Tabs.Screen name="index" options={{title: "Shoppinglist"}}/>
+        <Tabs.Screen name="counter" options={{title: "Counter"}}/>
+        <Tabs.Screen name="idea" options={{title: "Idea"}}/>
+    </Tabs>
   )
 }
