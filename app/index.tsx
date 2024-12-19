@@ -18,6 +18,10 @@ export default function App() {
     setValue("");
   };
 
+  const handleDelete = (id: string) => {
+    setItems(items.filter((item) => item.id !== id));
+  };
+
   return (
     <FlatList
       data={items}
@@ -38,7 +42,12 @@ export default function App() {
           <Text>Your shopping list is empty</Text>
         </View>
       }
-      renderItem={({ item }) => <ShoppingListItem name={item.name} />}
+      renderItem={({ item }) => (
+        <ShoppingListItem
+          name={item.name}
+          onDelete={() => handleDelete(item.id)}
+        />
+      )}
     ></FlatList>
   );
 }
