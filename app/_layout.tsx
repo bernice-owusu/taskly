@@ -4,10 +4,12 @@ import { theme } from "../theme";
 
 export default function Layout() {
   return (
-    <Tabs screenOptions={{
-        tabBarActiveTintColor:theme.primaryColor,  
-        tabBarActiveBackgroundColor:"white",
-       }}>
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: theme.primaryColor,
+        tabBarActiveBackgroundColor: "white",
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{

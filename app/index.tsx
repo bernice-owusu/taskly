@@ -6,6 +6,7 @@ import { useState } from "react";
 type ShoppingListItemType = {
   id: string;
   name: string;
+  completedAt?: number;
 };
 
 export default function App() {
@@ -20,6 +21,19 @@ export default function App() {
 
   const handleDelete = (id: string) => {
     setItems(items.filter((item) => item.id !== id));
+  };
+
+  const handleToggleComplete = (id: string) => {
+    setItems(
+      items.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              completedAt: item.completedAt ? undefined : Date.now(),
+            }
+          : item
+      )
+    );
   };
 
   return (
@@ -46,6 +60,8 @@ export default function App() {
         <ShoppingListItem
           name={item.name}
           onDelete={() => handleDelete(item.id)}
+          onToggleComplete={() => handleToggleComplete(item.id)}
+          isCompleted={Boolean(item.completedAt)}
         />
       )}
     ></FlatList>
