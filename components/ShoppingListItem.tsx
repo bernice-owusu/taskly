@@ -4,10 +4,13 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  View,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import React from "react";
 import { theme } from "../theme";
+import Entypo from "@expo/vector-icons/Entypo";
+import * as Haptics from "expo-haptics";
 
 type Props = {
   name: string;
@@ -23,6 +26,7 @@ export default function ShoppingListItem({
   onToggleComplete,
 }: Props) {
   const handleDelete = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     Alert.alert("Delete", `Are you sure you want to delete ${name}?`, [
       {
         text: "Cancel",
@@ -41,9 +45,19 @@ export default function ShoppingListItem({
       onPress={onToggleComplete}
       style={[styles.itemContainer, isCompleted && styles.completedContainer]}
     >
-      <Text style={[styles.itemText, isCompleted && styles.completedText]}>
-        {name}
-      </Text>
+      <View style={styles.row}>
+        <Entypo
+          name={isCompleted ? "check" : "circle"}
+          size={24}
+          color={isCompleted ? theme.colorGrey : theme.primaryColor}
+        />
+        <Text
+          style={[styles.itemText, isCompleted && styles.completedText]}
+          numberOfLines={1}
+        >
+          {name}
+        </Text>
+      </View>
       <TouchableOpacity activeOpacity={0.8} onPress={handleDelete}>
         <AntDesign
           name="closecircle"
@@ -66,8 +80,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 18,
     paddingVertical: 16,
+    flex: 1,
   },
   completedContainer: {
     backgroundColor: theme.colorLightGrey,
@@ -76,6 +90,7 @@ const styles = StyleSheet.create({
   itemText: {
     fontSize: 18,
     fontWeight: "200",
+    flex: 1,
   },
   completedButton: {
     backgroundColor: theme.colorGrey,
@@ -84,5 +99,10 @@ const styles = StyleSheet.create({
     textDecorationLine: "line-through",
     textDecorationColor: theme.colorGrey,
     color: theme.colorGrey,
+  },
+  row: {
+    flexDirection: "row",
+    gap: 8,
+    flex: 1,
   },
 });
