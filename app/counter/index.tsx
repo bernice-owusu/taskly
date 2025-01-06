@@ -16,9 +16,9 @@ import { registerForPushNotificationsAsync } from "../../utils/registerForPushNo
 import { isDevice } from "expo-device";
 
 const frequency = 10 * 2000;
-const countdownStorageKey = "taskly-countdown";
+export const countdownStorageKey = "taskly-countdown";
 
-type PersistedCountdownState = {
+export type PersistedCountdownState = {
   currentNotificationId: string | undefined;
   completedAtTimestamps: number[];
 };
